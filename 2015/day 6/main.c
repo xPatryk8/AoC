@@ -3,6 +3,7 @@
 #include <string.h>
 
 bool lights[1000][1000] = {false};
+int lightsBright[1000][1000] = {0};
 int result = 0;
 
 void makeInstruction(char *instruction, int startX, int startY, int endX,
@@ -38,6 +39,38 @@ int countLightsOn() {
   return result;
 }
 
+void makeInstruction1(char *instruction, int startX, int startY, int endX,
+                      int endY) {
+  if (strcmp(instruction, "on") == 0) {
+    for (int x = startX; x <= endX; x++)
+      for (int y = startY; y <= endY; y++) {
+        lightsBright[x][y]++;
+      }
+  } else if (strcmp(instruction, "off") == 0) {
+    for (int x = startX; x <= endX; x++)
+      for (int y = startY; y <= endY; y++) {
+        if (lightsBright[x][y] > 0)
+          lightsBright[x][y]--;
+      }
+  } else if (strcmp(instruction, "toggle") == 0) {
+    for (int x = startX; x <= endX; x++)
+      for (int y = startY; y <= endY; y++) {
+        lightsBright[x][y] += 2;
+      }
+  }
+}
+
+int countLightsOn1() {
+  int result = 0;
+
+  for (int x = 0; x < 1000; x++) {
+    for (int y = 0; y < 1000; y++) {
+      result += lightsBright[x][y];
+    }
+  }
+
+  return result;
+}
 int main() {
 
   FILE *file = fopen("in.txt", "r");
@@ -55,9 +88,9 @@ int main() {
              &endX, &endY);
     }
 
-    makeInstruction(instruction, startX, startY, endX, endY);
+    makeInstruction1(instruction, startX, startY, endX, endY);
   }
 
-  printf("Result: %d\n", countLightsOn());
+  printf("Result: %d\n", countLightsOn1());
   return 0;
 }
