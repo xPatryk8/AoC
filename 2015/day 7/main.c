@@ -135,6 +135,10 @@ int main() {
 
   char line[128];
   const char *elem[5];
+
+  // Part 2
+  mapAdd(MAP, "b", 956);
+
   while (mapFind(MAP, "a", NULL) != 1) {
     while (fgets(line, sizeof(line), file)) {
       LINE++;

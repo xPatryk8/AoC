@@ -643,7 +643,7 @@ ci RSHIFT 5 -> cl
 ly OR lz -> ma
 z AND aa -> ac
 iu RSHIFT 1 -> jn
-cy LSHIFT 15 -> dc
+cy LSHIFT 16 -> dc
 cf LSHIFT 1 -> cz
 as RSHIFT 3 -> au
 cz OR cy -> da
